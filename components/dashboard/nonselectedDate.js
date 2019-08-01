@@ -65,7 +65,7 @@ export default class SelectedDate extends Component {
         flexDirection: "column",
         justifyContent: 'center',
         alignItems: 'center',
-        maxWidth: '14.28%',
+
     },
     weekdayContainer: {
         flex: 1,
