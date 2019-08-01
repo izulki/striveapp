@@ -49,7 +49,7 @@ export default class SelectedDate extends Component {
         cx="6"
         cy="4"
         r="3.75"
-        fill="#e26c6c"
+        fill="#ffffff"
     />
 </Svg></View>
             </View>
@@ -85,15 +85,14 @@ export default class SelectedDate extends Component {
     weekday: {
         textAlign: 'center',
         fontFamily: "Proxima Nova Bold",
-        //color: '#bfbfbf',
-        color: 'black',
+        color: '#bdbdbf',
         fontSize: 12
     },
     day: {
         textAlign: 'center',
         fontFamily: "Proxima Nova Bold",
         fontSize: 20,
-        color: '#e26c6c'
+        color: '#bdbdbf'
     },
 
   })
