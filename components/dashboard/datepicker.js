@@ -1,40 +1,24 @@
 import React, { Component } from 'react';
 import {Text} from 'react-native';
 import moment from "moment";
+import SelectedDate from './selectedDate';
 
 
-const getDates = () => {
-    const datesArray = new Array(14);
-    var now = moment.now();
-    datesArray[7] = moment(now); 
-    var subCount = 1;
-    var addCount = 1;
+var offset = [-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
+var currentTime = moment.now();
 
-    for(var i=6; i>-1; i--){
-        datesArray[i] = moment(now).subtract(subCount, 'day');
-        subCount++;
-    }
-    for(var j=8; j<15; j++) {
-        datesArray[j] = moment(now).add(addCount, 'day');
-        addCount++;
-    }
-    console.log(datesArray);
-    return moment.now();
-}
 
 export default class DatePicker extends Component {
-    
     state = {
-        unixTime: 0,
     }
 
     componentDidMount() {
-        getDates();
+
     }
 
     render() {
         return (
-            <Text>Unix Time: {this.state.unixTime}</Text>
+            <SelectedDate currentTime={currentTime} dateOffset={offset[2]}/>
         );
     }
 
