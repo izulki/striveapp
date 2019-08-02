@@ -49,7 +49,7 @@ export default class SelectedDate extends Component {
         cx="6"
         cy="4"
         r="3.75"
-        fill="#ffffff"
+        fill="rgba(52, 52, 52, 0)"
     />
 </Svg></View>
             </View>

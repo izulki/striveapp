@@ -35,6 +35,7 @@ const Navbar = () => {
     },
 
     navbarContainer: {
+        maxHeight:'7%',
         flex: 1,
         flexDirection: "row",
         justifyContent: 'center',
