@@ -6,77 +6,54 @@
  * @flow
  */
 
-import React, {Fragment} from 'react';
-import {View, StyleSheet} from 'react-native';
-import Navbar from './components/navbar/navbar.js';
-import Dashboard from './components/dashboard/dashboard.js'
+import React from 'react';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+
+import Dashboard from './components/dashboard/dashboard.js'
 
 import HomeIcon from './components/tabbedBar/homeicon'
 import HabitsIcon from './components/tabbedBar/habitsicon'
 import ToDoIcon from './components/tabbedBar/todoicon'
 import JournalIcon from './components/tabbedBar/journalicon'
-
-// const App = () => {
-//   return (
-//     <View style={styles.rootContainer}>
-//       <View style={styles.navBarContainer}>
-//         <Navbar />
-//       </View>
-//       <View style={styles.contentContainer}>
-//         <Dashboard />
-//       </View>
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   rootContainer: {
-//     flex: 1,
-//   },
-
-//   navBarContainer: {
-//     minHeight: "7%",
-//     maxHeight: "7%",
-//   },
-
-//   contentContainer: {
-//     flex:1,
-//     minHeight: "93%",
-//     maxHeight: "93%",
-//   },
-
-
-// })
+import AddButton from './components/tabbedBar/addButton'
 
 const TabNavigator = createBottomTabNavigator({
   Dashboard: { 
     screen: Dashboard,
     navigationOptions: {
-      tabBarIcon: <HomeIcon />
+      tabBarIcon: (tintColor) => <HomeIcon color={tintColor} />
     } 
   },
   Habits: { 
     screen: Dashboard,
     navigationOptions: {
-      tabBarIcon: <HabitsIcon />
+      tabBarIcon: (tintColor) => <HabitsIcon color={tintColor} />
     } 
   },
-  Add: { screen: Dashboard },
+  Add: { 
+    screen: () => null,
+    navigationOptions: {
+      tabBarIcon: (tintColor) => <AddButton color={tintColor} />
+    } 
+  },
   ToDo: { 
     screen: Dashboard,
     navigationOptions: {
-      tabBarIcon: <ToDoIcon />
+      tabBarIcon: (tintColor) => <ToDoIcon color={tintColor} />
     } 
   },
   Journal: { 
     screen: Dashboard,
     navigationOptions: {
-      tabBarIcon: <JournalIcon />
+      tabBarIcon: (tintColor) => <JournalIcon color={tintColor} />
     } 
    },
+}, {
+  tabBarOptions: {
+    showLabel: false,
+    activeTintColor: '#DA6969', // active icon color
+    inactiveTintColor: '#000000',  // inactive icon color
+  }
 });
 
 export default createAppContainer(TabNavigator);
-
-//export default App;

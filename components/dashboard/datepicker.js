@@ -22,7 +22,6 @@ export default class DatePicker extends Component {
         <ScrollView 
         ref={scrollView => {
                 if(scrollView !== null && this.scrollView !== scrollView){
-                    console.log("NOT NULL");
                     this.scrollView = scrollView;
                     setTimeout(() => {
                         this.scrollView.scrollTo({animated: true, x: width/1.75});
@@ -30,7 +29,6 @@ export default class DatePicker extends Component {
 
                    
                 } else {
-                    console.log("NULL");
                 }
             }
         }

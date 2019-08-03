@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, StyleSheet, View, ScrollView, Dimensions} from 'react-native';
+import {Text, StyleSheet, View, StatusBar, Dimensions} from 'react-native';
 import DatePicker from './datepicker'
 import WelcomeText from './welcomeText'
 import DailyToDoCard from './dailyToDoCard'
@@ -19,6 +19,7 @@ export default class Dashboard extends Component {
     render() {
         return (
             <View style={styles.dashboardContainer}>
+                 <StatusBar backgroundColor="#fafafa" barStyle="dark-content" />
                 <Navbar />
                 <DatePicker />
                 {/* <WelcomeText /> */}
