@@ -41,7 +41,7 @@ export default class SelectedDate extends Component {
             <View style={styles.selectedDateContainer}>
                 <View style={styles.weekdayContainer}><Text style={styles.weekday}>{this.state.weekday}</Text></View>
                 <View style={styles.dayContainer}><Text style={styles.day}>{this.state.day}</Text></View>
-                <View style={styles.dotContainer}><Svg
+                {/* <View style={styles.dotContainer}><Svg
     height="8"
     width="10"
 >
@@ -51,7 +51,7 @@ export default class SelectedDate extends Component {
         r="3.75"
         fill="rgba(52, 52, 52, 0)"
     />
-</Svg></View>
+</Svg></View> */}
             </View>
             
 

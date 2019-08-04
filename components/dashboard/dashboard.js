@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import {Text, StyleSheet, View, StatusBar, Dimensions} from 'react-native';
+import {Modal, Text, StyleSheet, View, StatusBar, Dimensions, TouchableHighlight} from 'react-native';
 import DatePicker from './datepicker'
 import WelcomeText from './welcomeText'
 import DailyToDoCard from './dailyToDoCard'
 import Navbar from '../navbar/navbar'
-
+import AddButton from '../addAction/addButton'
+import ToDoListModal from '../addAction/toDoListModal'
 
 
 export default class Dashboard extends Component {
@@ -16,14 +17,23 @@ export default class Dashboard extends Component {
     componentDidMount() {
     }
 
+    state = {
+        modalVisible: false,
+      };
+    
+      setModalVisible() {
+        this.setState({modalVisible: !this.state.modalVisible});
+      }
+
     render() {
         return (
             <View style={styles.dashboardContainer}>
-                 <StatusBar backgroundColor="#fafafa" barStyle="dark-content" />
+                <AddButton callback={this.setModalVisible.bind(this)} />
+                <StatusBar backgroundColor="#fafafa" barStyle="dark-content" />
                 <Navbar />
                 <DatePicker />
-                {/* <WelcomeText /> */}
                 <DailyToDoCard />
+                <ToDoListModal modalVisible={this.state.modalVisible} callback={this.setModalVisible.bind(this)}/>
             </View>
                 
         );

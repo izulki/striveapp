@@ -15,7 +15,7 @@ import HomeIcon from './components/tabbedBar/homeicon'
 import HabitsIcon from './components/tabbedBar/habitsicon'
 import ToDoIcon from './components/tabbedBar/todoicon'
 import JournalIcon from './components/tabbedBar/journalicon'
-import AddButton from './components/tabbedBar/addButton'
+
 
 const TabNavigator = createBottomTabNavigator({
   Dashboard: { 
@@ -28,12 +28,6 @@ const TabNavigator = createBottomTabNavigator({
     screen: Dashboard,
     navigationOptions: {
       tabBarIcon: (tintColor) => <HabitsIcon color={tintColor} />
-    } 
-  },
-  Add: { 
-    screen: () => null,
-    navigationOptions: {
-      tabBarIcon: (tintColor) => <AddButton color={tintColor} />
     } 
   },
   ToDo: { 
