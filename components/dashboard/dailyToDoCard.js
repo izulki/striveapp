@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {Text, StyleSheet, View, ScrollView, Dimensions} from 'react-native';
+import {Text, StyleSheet, View, FlatList, Dimensions} from 'react-native';
 const { width, height } = Dimensions.get('window');
 import SQLite from 'react-native-sqlite-storage';
+import ToDoListItem from './toDoListItem.js'
 
 export default class DailyToDoCard extends Component {
 
@@ -30,7 +31,7 @@ export default class DailyToDoCard extends Component {
      }
 
 
-    componentDidMount () {
+     getToDoDataFromDB() {
         let db = this.state.db;
 
         let promise = new Promise(function(resolve, reject) {
@@ -53,8 +54,10 @@ export default class DailyToDoCard extends Component {
             this.setState({ToDoArray: array});
             console.log(this.state.ToDoArray)
         })
+     }
 
-
+    componentDidMount () {
+        this.getToDoDataFromDB();
     }
 
     
@@ -69,6 +72,21 @@ export default class DailyToDoCard extends Component {
                         <Text style={styles.toDoHeadingStyle}>To Do List</Text>
                         <Text style={styles.toDoHeadingStyle}>Today</Text>
                     </View>
+
+                    <View style={styles.ToDoListItemsView}>
+                    <FlatList
+                        data={this.state.ToDoArray}
+                        keyExtractor={item => item.ID.toString()}
+                        renderItem={({ item }) => (
+                            <ToDoListItem color={item.Color} title={item.Title} details={item.Desc} />
+                        )}
+                    />
+                    </View>
+
+
+
+
+
 
                 </View>
             </View>
@@ -98,6 +116,13 @@ export default class DailyToDoCard extends Component {
         marginRight: '5%',
         maxHeight: '10%',
     },
+    ToDoListItemsView: {
+        flex: 1,
+        marginLeft: '5%',
+        marginRight: '5%',
+    },
+
+
     toDoHeadingStyle: {
         fontFamily: "Proxima Nova Bold",
         fontSize: 16
