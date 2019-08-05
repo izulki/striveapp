@@ -15,15 +15,32 @@ export default class Dashboard extends Component {
      }
 
     componentDidMount() {
+      this.props.navigation.addListener('willFocus', (playload)=>{
+        this.refresh();
+      });
     }
 
     state = {
         modalVisible: false,
+        refresh: false,
       };
     
       setModalVisible() {
-        this.setState({modalVisible: !this.state.modalVisible});
+        this.setState(
+          {
+            modalVisible: !this.state.modalVisible,
+          });
+
+          this.refresh();
       }
+
+      refresh() {
+        this.setState(
+          {
+            refresh: !this.state.refresh,
+          });
+      }
+
 
     render() {
         return (
@@ -32,7 +49,7 @@ export default class Dashboard extends Component {
                 <StatusBar backgroundColor="#fafafa" barStyle="dark-content" />
                 <Navbar />
                 <DatePicker />
-                <DailyToDoCard refresh={this.state.modalVisible}/>
+                <DailyToDoCard refresh={this.state.refresh}/>
                 <ToDoListModal modalVisible={this.state.modalVisible} callback={this.setModalVisible.bind(this)}/>
             </View>
                 

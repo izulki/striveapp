@@ -21,7 +21,7 @@ export default class DailyToDoCard extends Component {
          refresh: this.props.refresh,
      }
 
-     componentWillReceiveProps(nextProps) {
+     UNSAFE_componentWillReceiveProps(nextProps) {
           this.getToDoDataFromDB();
           this.setState({ refresh: nextProps.refresh });
       }
