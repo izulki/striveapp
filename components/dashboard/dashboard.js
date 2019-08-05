@@ -32,7 +32,7 @@ export default class Dashboard extends Component {
                 <StatusBar backgroundColor="#fafafa" barStyle="dark-content" />
                 <Navbar />
                 <DatePicker />
-                <DailyToDoCard />
+                <DailyToDoCard refresh={this.state.modalVisible}/>
                 <ToDoListModal modalVisible={this.state.modalVisible} callback={this.setModalVisible.bind(this)}/>
             </View>
                 

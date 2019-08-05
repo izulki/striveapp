@@ -3,37 +3,32 @@ import {Text, StyleSheet, View, FlatList, Dimensions} from 'react-native';
 const { width, height } = Dimensions.get('window');
 import SQLite from 'react-native-sqlite-storage';
 import ToDoListItem from './toDoListItem.js'
+var Database = require('../../database.js')
 
 export default class DailyToDoCard extends Component {
 
     constructor(props) {
         super(props);
 
-        const db = SQLite.openDatabase(
-            {
-              name: 'striveDB.db',
-              location: 'default',
-              createFromLocation: '~www/striveDB.db',
-            },
-            () => {},
-            error => {
-              console.log("error");
-            }
-          );
-
-        this.state.db = db;
+        var conn = Database.getConnection();
+        this.state.db = conn;
      }
 
 
      state = {
          db: null,
          ToDoArray: [],
+         refresh: this.props.refresh,
      }
+
+     componentWillReceiveProps(nextProps) {
+          this.getToDoDataFromDB();
+          this.setState({ refresh: nextProps.refresh });
+      }
 
 
      getToDoDataFromDB() {
         let db = this.state.db;
-
         let promise = new Promise(function(resolve, reject) {
             db.transaction(tx => {
                 tx.executeSql('SELECT * FROM ToDo', [], (tx, results) => {
@@ -61,8 +56,6 @@ export default class DailyToDoCard extends Component {
     }
 
     
-
-
     render() {
         return (
         <View>

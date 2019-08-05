@@ -5,6 +5,8 @@ import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handl
 const { width, height } = Dimensions.get('window');
 import SQLite from 'react-native-sqlite-storage';
 
+var Database = require('../../database.js')
+
 
 export default class ToDoListModal extends Component {
 
@@ -12,19 +14,8 @@ export default class ToDoListModal extends Component {
     constructor(props) {
         super(props);
 
-        const db = SQLite.openDatabase(
-            {
-              name: 'striveDB.db',
-              location: 'default',
-              createFromLocation: '~www/striveDB.db',
-            },
-            () => {},
-            error => {
-              console.log("error");
-            }
-          );
-
-        this.state.db = db;
+        var conn = Database.getConnection();
+        this.state.db = conn;
      }
 
 

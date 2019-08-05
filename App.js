@@ -10,6 +10,7 @@ import React from 'react';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
 import Dashboard from './components/dashboard/dashboard.js'
+import ToDoList from './components/toDoList/toDoList.js'
 
 import HomeIcon from './components/tabbedBar/homeicon'
 import HabitsIcon from './components/tabbedBar/habitsicon'
@@ -31,7 +32,7 @@ const TabNavigator = createBottomTabNavigator({
     } 
   },
   ToDo: { 
-    screen: Dashboard,
+    screen: ToDoList,
     navigationOptions: {
       tabBarIcon: (tintColor) => <ToDoIcon color={tintColor} />
     } 
