@@ -1,14 +1,64 @@
 import React, { Component } from 'react';
 import {Text, StyleSheet, View, ScrollView, Dimensions} from 'react-native';
 const { width, height } = Dimensions.get('window');
+import SQLite from 'react-native-sqlite-storage';
 
 export default class DailyToDoCard extends Component {
+
     constructor(props) {
         super(props);
+
+        const db = SQLite.openDatabase(
+            {
+              name: 'striveDB.db',
+              location: 'default',
+              createFromLocation: '~www/striveDB.db',
+            },
+            () => {},
+            error => {
+              console.log("error");
+            }
+          );
+
+        this.state.db = db;
      }
 
-    componentDidMount() {
+
+     state = {
+         db: null,
+         ToDoArray: [],
+     }
+
+
+    componentDidMount () {
+        let db = this.state.db;
+
+        let promise = new Promise(function(resolve, reject) {
+            db.transaction(tx => {
+                tx.executeSql('SELECT * FROM ToDo', [], (tx, results) => {
+                    const rows = results.rows;
+                    let users = [];
+                    for (let i = 0; i < rows.length; i++) {
+                        users.push({
+                        ...rows.item(i),
+                        });
+                    }
+                    resolve(users);
+                });
+            });
+        });
+
+
+        promise.then((array) => {
+            this.setState({ToDoArray: array});
+            console.log(this.state.ToDoArray)
+        })
+
+
     }
+
+    
+
 
     render() {
         return (
